@@ -1,0 +1,73 @@
+xpath user: //*[@id="userName"]
+
+xpath input senha: //*[@id="password"]
+
+botão submit : //*[@id="login"]
+
+xpath checkbox: //*[@id="isAgreePolicy"]
+
+próximo botão : //*[@id="submit"]
+
+input senha antiga: //*[@id="userOldPwd"]
+
+input nova senha: //*[@id="userPwd"]
+
+input confirma senha: //*[@id="userConfirmPwd"]
+
+input email: //*[@id="emailNumberCfg"]
+
+próximo botão: //*[@id="submit"]
+
+botão finalizar: //*[@id="submit"]
+
+
+entrou na camera
+
+
+setup: //*[@id="nav_config"]
+
+horário: //*[@id="Com_timeCfgLink"]
+
+NTP INPUT: //*[@id="NTPIPAddr"] (10.10.0.35)
+
+salvar botão: //*[@id="configContainer"]/div/span/input
+
+OSD: //*[@id="Com_osdLink"]
+
+2 CHECKBOX: //*[@id="InfoEnable1"]
+
+text2 button: //*[@id="infoTR1"]/td[3]
+
+tem que mandar escrever pelo teclado solo sem send
+
+axis input: //*[@id="InfoLeft1"] (2)
+
+ayis input: //*[@id="InfoTop1"] (95)
+
+clicksave: //*[@id="video"]/div
+
+
+
+áudio e vídeo: //*[@id="menuContent"]/div[7]/a
+
+resolução selectbox: //*[@id="MainStreamPictureSize"] 2ª opção
+
+resolução 2 selectbox: //*[@id="AuxStreamPictureSize"] 1ª opção
+
+salvar botão: //*[@id="configContainer"]/span/input
+
+
+REDE: //*[@id="menuContent"]/div[4]/a	
+
+select box tipo ip : //*[@id="IPGetType"] 1ª opção ip estático
+
+
+novo endereço ip input: //*[@id="IpAddress"]
+
+mascara input: //*[@id="IpNetmask"]
+
+gateway input: //*[@id="IpGateway"]
+
+salvar botão: //*[@id="frmSetup"]/span/input
+
+

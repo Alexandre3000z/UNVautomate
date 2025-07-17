@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.log
+~$FonteDados.xlsx
+FonteDados.xlsx
+.env
+
+build/
+dist/
+venv/
