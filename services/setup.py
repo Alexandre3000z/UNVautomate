@@ -7,58 +7,9 @@ import time
 from dotenv import load_dotenv
 import os
 
-def formatar_mascara(mascara):
-    # Remove qualquer espaço em branco
-    mascara = mascara.strip()
-    
-    # Verifica se a máscara já contém pontos
-    if '.' in mascara:
-        # Valida se é uma máscara válida (4 octetos, cada um entre 0 e 255)
-        octetos = mascara.split('.')
-        if len(octetos) != 4:
-            return None, "Máscara deve conter 4 octetos"
-        
-        try:
-            for octeto in octetos:
-                num = int(octeto)
-                if num < 0 or num > 255:
-                    return None, "Cada octeto deve estar entre 0 e 255"
-            return mascara, None
-        except ValueError:
-            return None, "Máscara contém valores inválidos"
-    
-    # Se não tem pontos, assume que é uma string de números
-    else:
-        # Verifica se é uma string de 8, 9, 10, 11 ou 12 dígitos
-        if not (8 <= len(mascara) <= 12) or not mascara.isdigit():
-            return None, "Máscara sem pontos deve conter apenas números (8 a 12 dígitos)"
-        
-        try:
-            # Divide em grupos de até 3 dígitos
-            octetos = []
-            while mascara:
-                # Pega até 3 dígitos do início
-                octeto = mascara[:3] if len(mascara) >= 3 else mascara
-                num = int(octeto)
-                if num < 0 or num > 255:
-                    return None, "Cada octeto deve estar entre 0 e 255"
-                octetos.append(str(num))
-                mascara = mascara[len(octeto):]
-            
-            # Verifica se temos exatamente 4 octetos
-            if len(octetos) != 4:
-                return None, "Máscara deve conter exatamente 4 octetos"
-            
-            # Junta os octetos com pontos
-            mascara_formatada = '.'.join(octetos)
-            
-            return mascara_formatada
-            
-        except ValueError:
-            return None, "Máscara contém valores inválidos"
 
 def horarioConfig(driver):
-    
+
     # Carrega as variáveis do arquivo .env
     load_dotenv()
 
@@ -191,11 +142,6 @@ def audioVideoConfig(driver):
 
 def redeConfig(driver, ipNovo, mascara, gateway):
 
-    #Convertendo mascara caso venha no formato errado para 000.000.000.000
-    mascaraFormatada, erro = formatar_mascara(mascara)
-    
-    
-    
     try:
         # Botão de configuração de rede
         redeButton = WebDriverWait(driver, 10).until(
@@ -228,7 +174,7 @@ def redeConfig(driver, ipNovo, mascara, gateway):
         mascaraInput.click()
         mascaraInput.send_keys(Keys.CONTROL + "a")  # Seleciona todo o
         mascaraInput.send_keys(Keys.DELETE)  # Apaga o texto selecionado
-        mascaraInput.send_keys(mascaraFormatada)
+        mascaraInput.send_keys(mascara)
 
         # Gateway
         gatewayInput = WebDriverWait(driver, 10).until(
