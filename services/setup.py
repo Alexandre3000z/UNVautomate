@@ -237,10 +237,54 @@ def audioVideoConfig(driver):
         raise (f"Erro ao configurar Áudio e Vídeo: {e}")
 
 
+def WDRconfig(driver):
+
+    try:
+        time.sleep(1)
+
+        # Botão Image
+        imageButton = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="menuContent"]/div[10]/a'))
+        )
+        imageButton.click()
+
+        time.sleep(1)
+
+        # Scenes
+        scenesButton = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, '//*[@id="sceneForm"]/fieldset/legend/span')
+            )
+        )
+        scenesButton.click()
+
+        # Select WDR
+        select1 = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, '//*[@id="SceneType0"]')
+            )
+        )
+        dropdownWDR = Select(select1)
+        dropdownWDR.select_by_visible_text("<WDR>")
+        
+        # Aguarda até que o alerta esteja presente
+        WebDriverWait(driver, 10).until(EC.alert_is_present())
+        
+        # Muda para o alerta
+        alert = Alert(driver)
+        
+        # Aceita o alerta (equivalente a clicar em "OK" ou pressionar "Enter")
+        alert.accept()
+
+        time.sleep(1)
+    except Exception as e:
+        raise (f"Erro ao configurar WDR: {e}")
+
+
 def redeConfig(driver, ipNovo, mascara, gateway):
 
     try:
-        print("ta chegando aqui")
+
         # Botão de configuração de rede
         redeButton = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//*[@id="menuContent"]/div[4]/a'))
@@ -248,14 +292,14 @@ def redeConfig(driver, ipNovo, mascara, gateway):
         redeButton.click()
 
         time.sleep(1)
-        print("ta chegando aqui 2")
+ 
         # Tipo de IP
         selectBoxIP = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="IPGetType"]'))
         )
         dropdownIP = Select(selectBoxIP)
         dropdownIP.select_by_index(0)
-        print("ta chegando aqui 3")
+    
         # IP
         ipInput = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="IpAddress"]'))
