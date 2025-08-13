@@ -184,6 +184,15 @@ def audioVideoConfig(driver):
         )
         dropdown = Select(selectResolution1)
         dropdown.select_by_visible_text("1920×1080(1080P)")
+        
+        # Configuração FPS 1
+        selectFps1 = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, '//*[@id="MainStreamFrameRate"]')
+            )
+        )
+        dropdownfps1 = Select(selectFps1)
+        dropdownfps1.select_by_visible_text("15")
 
         # Configuração resolução 2
         selectResolution2 = WebDriverWait(driver, 10).until(
@@ -194,6 +203,15 @@ def audioVideoConfig(driver):
         dropdown2 = Select(selectResolution2)
         dropdown2.select_by_visible_text("720×576(D1)")
 
+        # Configuração FPS 2
+        selectFps2 = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, '//*[@id="AuxStreamFrameRate"]')
+            )
+        )
+        dropdownfps1 = Select(selectFps2)
+        dropdownfps1.select_by_visible_text("15")
+        
         # Botão de salvar
         saveButton = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable(
