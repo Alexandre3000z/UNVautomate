@@ -183,7 +183,7 @@ def audioVideoConfig(driver):
             )
         )
         dropdown = Select(selectResolution1)
-        dropdown.select_by_visible_text("1280×720(720P)")
+        dropdown.select_by_visible_text("1920×1080(1080P)")
 
         # Configuração resolução 2
         selectResolution2 = WebDriverWait(driver, 10).until(
@@ -192,7 +192,7 @@ def audioVideoConfig(driver):
             )
         )
         dropdown2 = Select(selectResolution2)
-        dropdown2.select_by_visible_text("1280×720(720P)")
+        dropdown2.select_by_visible_text("720×576(D1)")
 
         # Botão de salvar
         saveButton = WebDriverWait(driver, 10).until(
