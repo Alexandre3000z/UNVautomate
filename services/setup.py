@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.alert import Alert
 import time
 
 from dotenv import load_dotenv
@@ -143,11 +144,6 @@ def serviceConfig(driver):
         
         time.sleep(1.5)
         
-        # Supondo que um alerta aparece após algum evento
-        alert = driver.switch_to.alert
-        print("Texto do alerta:", alert.text)  # Mostra o texto
-        alert.accept()  # Clica em OK
-
         #Escrever Comunnity
         comunnityInpu = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
