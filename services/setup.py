@@ -135,8 +135,20 @@ def serviceConfig(driver):
         dropdown = Select(selectSNMP)
         dropdown.select_by_visible_text("SNMPv2")
 
+        # Aguarda até que o alerta esteja presente
+        WebDriverWait(driver, 10).until(EC.alert_is_present())
+        
+        # Muda para o alerta
+        alert = Alert(driver)
+        
+        # Aceita o alerta (equivalente a clicar em "OK" ou pressionar "Enter")
+        alert.accept()
+
+        time.sleep(1)
+            
         time.sleep(1.5)
 
+        
         # Escrever Comunnity
         comunnityInpu = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="SNMPROCommuName"]'))
