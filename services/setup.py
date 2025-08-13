@@ -209,6 +209,7 @@ def audioVideoConfig(driver):
 def redeConfig(driver, ipNovo, mascara, gateway):
 
     try:
+        print('ta chegando aqui')
         # Botão de configuração de rede
         redeButton = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//*[@id="menuContent"]/div[4]/a'))
@@ -216,14 +217,14 @@ def redeConfig(driver, ipNovo, mascara, gateway):
         redeButton.click()
 
         time.sleep(1)
-
+        print('ta chegando aqui 2')
         # Tipo de IP
         selectBoxIP = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="IPGetType"]'))
         )
         dropdownIP = Select(selectBoxIP)
-        dropdownIP.select_by_visible_text("IP Estático")
-
+        dropdownIP.select_by_index(0)
+        print('ta chegando aqui 3')
         # IP
         ipInput = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="IpAddress"]'))
