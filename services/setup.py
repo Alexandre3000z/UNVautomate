@@ -134,17 +134,20 @@ def serviceConfig(driver):
 
         dropdown = Select(selectSNMP)
         dropdown.select_by_visible_text("SNMPv2")
-
-        # Aguarda até que o alerta esteja presente
-        WebDriverWait(driver, 10).until(EC.alert_is_present())
         
-        # Muda para o alerta
-        alert = Alert(driver)
-        
-        # Aceita o alerta (equivalente a clicar em "OK" ou pressionar "Enter")
-        alert.accept()
+        try:
+            # Aguarda até que o alerta esteja presente
+            WebDriverWait(driver, 10).until(EC.alert_is_present())
+            
+            # Muda para o alerta
+            alert = Alert(driver)
+            
+            # Aceita o alerta (equivalente a clicar em "OK" ou pressionar "Enter")
+            alert.accept()
+            
+        except:
+            print("SNMP já configurado")
 
-        time.sleep(1)
             
         time.sleep(1.5)
 
@@ -279,14 +282,18 @@ def WDRconfig(driver):
         dropdownWDR = Select(select1)
         dropdownWDR.select_by_visible_text("<WDR>")
         
-        # Aguarda até que o alerta esteja presente
-        WebDriverWait(driver, 10).until(EC.alert_is_present())
-        
-        # Muda para o alerta
-        alert = Alert(driver)
-        
-        # Aceita o alerta (equivalente a clicar em "OK" ou pressionar "Enter")
-        alert.accept()
+        try:
+            # Aguarda até que o alerta esteja presente
+            WebDriverWait(driver, 10).until(EC.alert_is_present())
+            
+            # Muda para o alerta
+            alert = Alert(driver)
+            
+            # Aceita o alerta (equivalente a clicar em "OK" ou pressionar "Enter")
+            alert.accept()
+            
+        except:
+            print("WDR já configurado")
 
         time.sleep(1)
     except Exception as e:
