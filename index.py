@@ -3,7 +3,7 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 from config.driverConfig import get_webdriver
 from services.login import loginExecute
-from services.setup import horarioConfig, OSDconfig, audioVideoConfig, redeConfig
+from services.setup import horarioConfig, OSDconfig, audioVideoConfig, redeConfig, serviceConfig
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -50,6 +50,7 @@ def main():
 
             horarioConfig(driver)
             OSDconfig(driver, nomeCamera)
+            serviceConfig(driver)
             audioVideoConfig(driver)
             redeConfig(driver, ipNovo, mascara, gateway)
             

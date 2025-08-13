@@ -98,6 +98,76 @@ def OSDconfig(driver, camName):
     except Exception as e:
         raise (f"Erro ao configurar OSD: {e}")
 
+def serviceConfig(driver):
+    try:
+        # Botão de configuração de áudio e vídeo
+        networkButton = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="menuContent"]/div[4]/a'))
+        )
+        networkButton.click()
+
+        time.sleep(1)
+
+        # Configuração service COnfig
+        serviceButton = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, '//*[@id="businessCfgLink"]')
+            )
+        )
+        serviceButton.click()
+        
+        #Clicando opção SNMP
+        SNMPbutton = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, '//*[@id="SNMPCfgTab"]')
+            )
+        )
+        SNMPbutton.click()
+        
+        #Ativar SNMP
+        SNMPcheck = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, '//*[@id="snmpOpen"]')
+            )
+        )
+        SNMPcheck.click()
+        
+        selectSNMP = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, '//*[@id="SNMPType"]')
+            )
+        )
+        
+        dropdown = Select(selectSNMP)
+        dropdown.select_by_visible_text("SNMPv2")
+        
+        time.sleep(1.5)
+        
+        # Supondo que um alerta aparece após algum evento
+        alert = driver.switch_to.alert
+        print("Texto do alerta:", alert.text)  # Mostra o texto
+        alert.accept()  # Clica em OK
+
+        #Escrever Comunnity
+        comunnityInpu = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="SNMPROCommuName"]')
+            )
+        )
+        comunnityInpu.clear()
+        comunnityInpu.send_keys('h0wb3')
+        
+        #Save Button
+        saveButton = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, '//*[@id="configContainer"]/span/input')
+            )
+        )
+        saveButton.click()
+        time.sleep(2)   
+
+    except Exception as e:
+        raise (f"Erro ao configurar SNMP {e}")
 
 def audioVideoConfig(driver):
 
