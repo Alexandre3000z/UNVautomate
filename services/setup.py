@@ -99,6 +99,7 @@ def OSDconfig(driver, camName):
     except Exception as e:
         raise (f"Erro ao configurar OSD: {e}")
 
+
 def serviceConfig(driver):
     try:
         # Botão de configuração de áudio e vídeo
@@ -111,59 +112,50 @@ def serviceConfig(driver):
 
         # Configuração service COnfig
         serviceButton = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located(
-                (By.XPATH, '//*[@id="businessCfgLink"]')
-            )
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="businessCfgLink"]'))
         )
         serviceButton.click()
-        
-        #Clicando opção SNMP
+
+        # Clicando opção SNMP
         SNMPbutton = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located(
-                (By.XPATH, '//*[@id="SNMPCfgTab"]')
-            )
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="SNMPCfgTab"]'))
         )
         SNMPbutton.click()
-        
-        #Ativar SNMP
+
+        # Ativar SNMP
         SNMPcheck = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located(
-                (By.XPATH, '//*[@id="snmpOpen"]')
-            )
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="snmpOpen"]'))
         )
         SNMPcheck.click()
-        
+
         selectSNMP = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located(
-                (By.XPATH, '//*[@id="SNMPType"]')
-            )
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="SNMPType"]'))
         )
-        
+
         dropdown = Select(selectSNMP)
         dropdown.select_by_visible_text("SNMPv2")
-        
+
         time.sleep(1.5)
-        
-        #Escrever Comunnity
+
+        # Escrever Comunnity
         comunnityInpu = WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located(
-            (By.XPATH, '//*[@id="SNMPROCommuName"]')
-            )
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="SNMPROCommuName"]'))
         )
         comunnityInpu.clear()
-        comunnityInpu.send_keys('h0wb3')
-        
-        #Save Button
+        comunnityInpu.send_keys("h0wb3")
+
+        # Save Button
         saveButton = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located(
                 (By.XPATH, '//*[@id="configContainer"]/span/input')
             )
         )
         saveButton.click()
-        time.sleep(2)   
+        time.sleep(2)
 
     except Exception as e:
         raise (f"Erro ao configurar SNMP {e}")
+
 
 def audioVideoConfig(driver):
 
@@ -184,7 +176,7 @@ def audioVideoConfig(driver):
         )
         dropdown = Select(selectResolution1)
         dropdown.select_by_visible_text("1920×1080(1080P)")
-        
+
         # Configuração FPS 1
         selectFps1 = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located(
@@ -211,7 +203,7 @@ def audioVideoConfig(driver):
         )
         dropdownfps1 = Select(selectFps2)
         dropdownfps1.select_by_visible_text("15")
-        
+
         # Botão de salvar
         saveButton = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable(
@@ -220,6 +212,27 @@ def audioVideoConfig(driver):
         )
         saveButton.click()
 
+        # Audio Button
+        time.sleep(1)
+        audioButton = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="soundBoxLink"]'))
+        )
+        audioButton.click()
+
+        # Habilitar Audio
+        checkAudio = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="MuteOn"]'))
+        )
+        checkAudio.click()
+
+        time.sleep(1)
+
+        # Save button
+        checkAudio = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="frmSetup"]/span/input'))
+        )
+        checkAudio.click()
+
     except Exception as e:
         raise (f"Erro ao configurar Áudio e Vídeo: {e}")
 
@@ -227,7 +240,7 @@ def audioVideoConfig(driver):
 def redeConfig(driver, ipNovo, mascara, gateway):
 
     try:
-        print('ta chegando aqui')
+        print("ta chegando aqui")
         # Botão de configuração de rede
         redeButton = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//*[@id="menuContent"]/div[4]/a'))
@@ -235,14 +248,14 @@ def redeConfig(driver, ipNovo, mascara, gateway):
         redeButton.click()
 
         time.sleep(1)
-        print('ta chegando aqui 2')
+        print("ta chegando aqui 2")
         # Tipo de IP
         selectBoxIP = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="IPGetType"]'))
         )
         dropdownIP = Select(selectBoxIP)
         dropdownIP.select_by_index(0)
-        print('ta chegando aqui 3')
+        print("ta chegando aqui 3")
         # IP
         ipInput = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, '//*[@id="IpAddress"]'))
