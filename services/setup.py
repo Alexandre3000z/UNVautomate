@@ -14,7 +14,7 @@ def horarioConfig(driver):
     load_dotenv()
 
     # Acessa as variáveis usando os.getenv()
-    ntp = os.getenv("ntp")
+    ntp = "10.10.0.35"
     try:
 
         # Horario

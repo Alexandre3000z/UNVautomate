@@ -14,10 +14,9 @@ def loginExecute(driver):
     # Carrega as variáveis do arquivo .env
     load_dotenv()
 
-    # Acessa as variáveis usando os.getenv()
-    senha = os.getenv("senhaPadrao")
-    senhaNova = os.getenv("senhaNova")
-    email = os.getenv("email")
+    senha = "123456"
+    senhaNova = "h0wb3@123"
+    email = "suporte-l@howbe.com.br"
     
     try:
         time.sleep(2)
@@ -73,11 +72,45 @@ def loginExecute(driver):
         )
         emailInput.send_keys(email)
 
-        # Botão de continuar
-        continueButton2 = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, '//*[@id="submit"]'))
+        try:
+            # Botão de continuar
+            continueButton2 = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="submit"]'))
+            )
+            continueButton2.click()
+        except:
+            #Modelo novo caixa preta UNV
+            continueButton2 = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="popwin_btnbar"]/span[1]/input'))
+            )
+            continueButton2.click()
+            
+            #Botão de confirmação 2
+            confirmButton = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="confirmbtn"]'))
+            )
+            confirmButton.click()
+            
+            #Botão de confirmação 3
+            time.sleep(2)
+            confirmButton2 = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="confirmbtn"]'))
+            )
+            confirmButton2.click()
+            
+            #Logar novamente 
+            time.sleep(2)
+    
+            passwordInput = WebDriverWait(driver, 20).until(
+                EC.visibility_of_element_located((By.XPATH, '//*[@id="password"]'))
+            )
+            passwordInput.send_keys(senhaNova)
+
+        # Botão de login
+        loginButton = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="login"]'))
         )
-        continueButton2.click()
+        loginButton.click()
 
         # Botão de finalizar
         finishButton = WebDriverWait(driver, 20).until(
