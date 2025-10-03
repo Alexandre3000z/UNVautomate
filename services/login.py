@@ -8,16 +8,15 @@ from dotenv import load_dotenv
 import os
 
 
-
 def loginExecute(driver):
-    
+
     # Carrega as variáveis do arquivo .env
     load_dotenv()
 
     senha = "123456"
     senhaNova = "h0wb3@123"
     email = "suporte-l@howbe.com.br"
-    
+
     try:
         time.sleep(2)
         # Campo Senha
@@ -78,50 +77,59 @@ def loginExecute(driver):
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="submit"]'))
             )
             continueButton2.click()
+
+            # Botão de login
+            loginButton = WebDriverWait(driver, 20).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="login"]'))
+            )
+            loginButton.click()
+
+            # Botão de finalizar
+            finishButton = WebDriverWait(driver, 20).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="submit"]'))
+            )
+            finishButton.click()
+            
         except:
-            #Modelo novo caixa preta UNV
+            # Modelo novo caixa preta UNV
             continueButton2 = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.XPATH, '//*[@id="popwin_btnbar"]/span[1]/input'))
+                EC.element_to_be_clickable(
+                    (By.XPATH, '//*[@id="popwin_btnbar"]/span[1]/input')
+                )
             )
             continueButton2.click()
-            
-            #Botão de confirmação 2
+
+            # Botão de confirmação 2
             confirmButton = WebDriverWait(driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="confirmbtn"]'))
             )
             confirmButton.click()
-            
-            #Botão de confirmação 3
+
+            # Botão de confirmação 3
             time.sleep(2)
             confirmButton2 = WebDriverWait(driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="confirmbtn"]'))
             )
             confirmButton2.click()
-            
-            #Logar novamente 
+
+            # Logar novamente
             time.sleep(2)
-    
+
             passwordInput = WebDriverWait(driver, 20).until(
                 EC.visibility_of_element_located((By.XPATH, '//*[@id="password"]'))
             )
             passwordInput.send_keys(senhaNova)
 
-        # Botão de login
-        loginButton = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, '//*[@id="login"]'))
-        )
-        loginButton.click()
-
-        # Botão de finalizar
-        finishButton = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, '//*[@id="submit"]'))
-        )
-        finishButton.click()
+            # Botão de login
+            loginButton = WebDriverWait(driver, 20).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="login"]'))
+            )
+            loginButton.click()
 
     except Exception as e:
         print(f"Erro ao executar o login: {e}. Tentando novamente com senha padrão...")
         time.sleep(2)
-        
+
         try:
             # Limpa o campo de senha e insere a senha padrão
             passwordInput = WebDriverWait(driver, 20).until(
