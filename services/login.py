@@ -78,11 +78,11 @@ def loginExecute(driver):
             )
             continueButton2.click()
 
-            # Botão de login
-            loginButton = WebDriverWait(driver, 20).until(
-                EC.element_to_be_clickable((By.XPATH, '//*[@id="login"]'))
-            )
-            loginButton.click()
+            # # Botão de login
+            # loginButton = WebDriverWait(driver, 20).until(
+            #     EC.element_to_be_clickable((By.XPATH, '//*[@id="login"]'))
+            # )
+            # loginButton.click()
 
             # Botão de finalizar
             finishButton = WebDriverWait(driver, 20).until(
